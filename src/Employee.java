@@ -4,8 +4,8 @@ public class Employee {
     private final String fullName;
     private int department;
     private int salary;
-    private static int idCounter = 0;
-    private int id;
+    private static int idCounter = 1;
+    private final int id;
 
     //конструктор
     public Employee(String fullName, int department, int salary) {

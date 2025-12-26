@@ -1,5 +1,3 @@
-import java.util.Arrays;
-import java.util.Objects;
 public class EmployeeBook {
     private final Employee[] employees;
     private int count;
@@ -10,12 +8,16 @@ public class EmployeeBook {
         this.employees = new Employee[10];
         this.count = 0;
     }
-
-    public void addEmployee(Employee employee) {
-        if (count < 10) {
-            employees[count] = employee;
-            count++;
+    //добавляем сотрудников
+    public boolean addEmployee(Employee employee) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] == null) {
+                employees[i] = employee;
+                count++;
+                return true;
+            }
         }
+        return false;
     }
     //расчет средней зарплаты
     public double calculateAverageSalary() {
@@ -39,7 +41,6 @@ public class EmployeeBook {
             }
         }
     }
-
     //расчет налогов
     public double calculateTax(int salary, String taxType) {
          double taxRate = 0;
@@ -65,10 +66,10 @@ public class EmployeeBook {
     //вывод информации о налоге
     public void printTaxes(String taxType) {
         for (Employee employee : employees) {
-            if (employee != null) {
-            double tax = calculateTax(employee.getSalary(), taxType);
-            System.out.println("Сотрудник: " + employee.getName() + ", зарплата: " + employee.getSalary() + ", налог: " + tax);
-            }
+        if (employee != null) {
+        double tax = calculateTax(employee.getSalary(), taxType);
+        System.out.println("Сотрудник: " + employee.getName() + ", зарплата: " + employee.getSalary() + ", налог: " + tax);
+        }
         }
     }
     //индексируем зарплату
@@ -86,5 +87,52 @@ public class EmployeeBook {
         employee.setSalary((int) newSalary);
         }
     }
+    //поиск сотрудника с наибольшей зарплатой
+    public void findingHighestSalary (int department, int minimalSalary) {
+        for (int i = 0; i < count; i++) {
+        Employee employee = employees[i];
+        if (employee == null) {
+        continue;
+        }
+        if (employee.getDepartment() == department && employee.getSalary() > minimalSalary) {
+        employee.printShortInfo();
+        break;
+        }
     }
+}
+    //поиск сотрудников с меньшей зарплатой
+    public void findingLowerSalaries (int wage, int employeeNumber) {
+        employeeNumber = 0;
+        Employee employee = employees[employeeNumber];
+        while (employeeNumber < count) {
+        if (employee.getSalary() < wage) {
+        employeeNumber++;
+        System.out.println(employee);
+        break;
+        }
+    }
+}
+    //сравнение сотрудников
+    public boolean employeeComparison (Employee employee) {
+        for (int i = 0; i < count; i++) {
+        Employee emp = employees[i];
+        if (emp.equals(employee)) {
+        return true;
+        }
+        }
+        return false;
+        }
+    //получение сотрудника по id
+    public void findById (int id) {
+        for (int i = 0; i < count; i++) {
+        Employee e = employees[i];
+        if (id == count) {
+        System.out.println(e);
+        }
+}
+}
+}
+
+
+
 
