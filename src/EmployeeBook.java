@@ -5,7 +5,7 @@ public class EmployeeBook {
     public static final String PROGRESSIVE = "PROGRESSIVE";
     //конструктор
     public EmployeeBook() {
-        this.employees = new Employee[10];
+        this.employees = new Employee[11];
         this.count = 0;
     }
     //добавляем сотрудников
@@ -43,8 +43,7 @@ public class EmployeeBook {
     }
     //расчет налогов
     public double calculateTax(int salary, String taxType) {
-         double taxRate = 0;
-
+         double taxRate;
          switch (taxType) {
          case PROPORTIONAL:
          taxRate = 0.13;
@@ -64,12 +63,21 @@ public class EmployeeBook {
          return salary * taxRate;
         }
     //вывод информации о налоге
-    public void printTaxes(String taxType) {
+    public void printTaxes() {
         for (Employee employee : employees) {
         if (employee != null) {
+        String taxType = determineTax(employee.getSalary());
         double tax = calculateTax(employee.getSalary(), taxType);
         System.out.println("Сотрудник: " + employee.getName() + ", зарплата: " + employee.getSalary() + ", налог: " + tax);
         }
+        }
+    }
+    //определяем тип налога при вызове метода
+    private String determineTax(int salary) {
+        if (salary < 100000) {
+            return PROPORTIONAL;
+        } else {
+            return PROGRESSIVE;
         }
     }
     //индексируем зарплату
@@ -102,34 +110,39 @@ public class EmployeeBook {
 }
     //поиск сотрудников с меньшей зарплатой
     public void findingLowerSalaries (int wage, int employeeNumber) {
-        employeeNumber = 0;
-        Employee employee = employees[employeeNumber];
-        while (employeeNumber < count) {
-        if (employee.getSalary() < wage) {
-        employeeNumber++;
+        int i = 0;
+        int foundEmployeeNumber = 0;
+        while (i < count) {
+        Employee employee = employees[i];
+        if (employee != null && employee.getSalary() < wage) {
         System.out.println(employee);
+        foundEmployeeNumber++;
+        if (foundEmployeeNumber == employeeNumber) {
         break;
         }
-    }
+        }
+        i++;
+        }
 }
     //сравнение сотрудников
     public boolean employeeComparison (Employee employee) {
-        for (int i = 0; i < count; i++) {
-        Employee emp = employees[i];
-        if (emp.equals(employee)) {
+        if (employee == null) return false;
+        for (Employee emp : employees) {
+        if (emp != null && emp.getSalary() == employee.getSalary() && emp.getName().equals(employee.getName())) {
         return true;
         }
         }
         return false;
         }
     //получение сотрудника по id
-    public void findById (int id) {
+    public Employee findById (int id) {
         for (int i = 0; i < count; i++) {
         Employee e = employees[i];
-        if (id == count) {
-        System.out.println(e);
+        if (e != null && e.getId() == id) {
+            return e;
         }
 }
+        return null;
 }
 }
 

@@ -27,6 +27,10 @@ public class Employee {
         return salary;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setDepartment(int department) {
         this.department = department;
     }
