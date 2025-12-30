@@ -5,7 +5,7 @@ public class EmployeeBook {
     public static final String PROGRESSIVE = "PROGRESSIVE";
     //конструктор
     public EmployeeBook() {
-        this.employees = new Employee[11];
+        this.employees = new Employee[10];
         this.count = 0;
     }
     //добавляем сотрудников
@@ -85,12 +85,10 @@ public class EmployeeBook {
         if (percentage < 0) {
         throw new IllegalArgumentException("Процент индексации должен быть положительным");
         }
-
         for (Employee employee : employees) {
         if (employee == null || employee.getDepartment() != department) {
         continue;
         }
-
         double newSalary = employee.getSalary() * (1 + percentage / 100);
         employee.setSalary((int) newSalary);
         }

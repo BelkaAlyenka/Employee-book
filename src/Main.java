@@ -2,18 +2,17 @@ public class Main {
     public static void main(String[] args) {
         EmployeeBook book = new EmployeeBook();
 
-        Employee alina = new Employee("Чернякова Алина Олеговна", 5, 60000);
-        Employee sergey = new Employee("Иванов Сергей Иванович", 3, 65600);
-        Employee galina = new Employee("Сусленкова Галина Сергеевна", 2, 71000);
-        Employee vera = new Employee("Люблова Вера Николаевна", 4, 89500);
-        Employee oleg = new Employee("Волков Олег Николаевич", 5, 55000);
-        Employee nikita = new Employee("Бобылев Никита Георгиевич", 4, 134000);
-        Employee marina = new Employee("Мартынова Марина Максимовна", 1, 20000);
-        Employee ivan = new Employee("Иванов Иван Иванович", 1, 68000);
-        Employee ura = new Employee("Козлов Юрий Олегович", 3, 99000);
-        Employee ekaterina = new Employee("Лисовская Екатерина Георгиевна", 2, 19500);
-        Employee alisa = new Employee("Пушистова Алиса Юрьевна", 5, 110000);
-        Employee employeeForComparison = new Employee("Мартынова Марина Максимовна", 1, 20000);
+        Employee alina = new Employee("Чернякова Алина Олеговна", 5, 50);
+        Employee sergey = new Employee("Иванов Сергей Иванович", 3, 60);
+        Employee galina = new Employee("Сусленкова Галина Сергеевна", 2, 110);
+        Employee vera = new Employee("Люблова Вера Николаевна", 4, 90);
+        Employee oleg = new Employee("Волков Олег Николаевич", 5, 330);
+        Employee nikita = new Employee("Бобылев Никита Георгиевич", 4, 130);
+        Employee marina = new Employee("Мартынова Марина Максимовна", 1, 200);
+        Employee ivan = new Employee("Иванов Иван Иванович", 1, 280);
+        Employee ura = new Employee("Козлов Юрий Олегович", 3, 99);
+        Employee ekaterina = new Employee("Лисовская Екатерина Георгиевна", 2, 191);
+        Employee employeeForComparison = new Employee("Мартынова Марина Максимовна", 1, 200);
 
         book.addEmployee(alina);
         book.addEmployee(sergey);
@@ -25,16 +24,15 @@ public class Main {
         book.addEmployee(ivan);
         book.addEmployee(ura);
         book.addEmployee(ekaterina);
-        book.addEmployee(alisa);
 
-        book.indexingSalaries(2, 5);
         System.out.println("Средняя зарплата равна: " + book.calculateAverageSalary());
+        book.indexingSalaries(2, 5);
         book.printAllEmployees();
         book.printTaxes();
-        System.out.println("Сотрудник из отдела 5 с зарплатой выше 50000:");
-        book.findingHighestSalary(5, 50000);
-        System.out.println("Первые 5 сотрудников с зарплатой меньше 80000:");
-        book.findingLowerSalaries(80000, 5);
+        System.out.println("Сотрудник из отдела 5 с зарплатой выше 200:");
+        book.findingHighestSalary(5, 200);
+        System.out.println("Первые 4 сотрудника с зарплатой меньше 100:");
+        book.findingLowerSalaries(100, 4);
 
         if (book.employeeComparison(employeeForComparison)) {
             System.out.println("Сотрудник найден");
@@ -50,6 +48,5 @@ public class Main {
         } else {
             System.out.println("Сотрудник не найден");
         }
-
     }
 }
